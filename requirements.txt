@@ -1,0 +1,25 @@
+# CampusLoop - Python Utilities & Tooling Requirements
+# Note: CampusLoop's core web application runs on Next.js/Node.js (use `npm install`).
+# This requirements.txt file provides all Python dependencies for the companion CLI,
+# automated test runners, Gemini AI scripts, and Supabase database utility scripts.
+
+# AI & LLM SDK
+google-generativeai>=0.8.0
+
+# Database & Supabase SDK
+supabase>=2.10.0
+psycopg2-binary>=2.9.9
+
+# HTTP & API Requests (WhatsApp Cloud API & REST endpoints)
+requests>=2.32.0
+httpx>=0.27.0
+urllib3>=2.2.0
+
+# Environment Variables & Configuration
+python-dotenv>=1.0.1
+
+# Data Validation & Typing
+pydantic>=2.10.0
+
+# Testing & Utilities
+pytest>=8.3.0
