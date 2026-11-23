@@ -23,7 +23,7 @@ import {
 
 export default function CreateListingPage() {
   const router = useRouter();
-  const { createListing, pickupPoints } = useCampusStore();
+  const { createListing, pickupPoints, activeUser } = useCampusStore();
 
   const [currentStep, setCurrentStep] = useState(1);
   const [aiPrompt, setAiPrompt] = useState('');
@@ -52,6 +52,7 @@ export default function CreateListingPage() {
   const [originalPrice, setOriginalPrice] = useState<number>(900);
   const [maxLendingDays, setMaxLendingDays] = useState<number>(30);
   const [description, setDescription] = useState('');
+  const [whatsappNumber, setWhatsappNumber] = useState(activeUser.whatsappNumber || '+919876543210');
   const [pickupPointPreferenceId, setPickupPointPreferenceId] = useState(pickupPoints[0]?.id || 'pickup-lib');
 
   // Trigger AI Auto-Fill
@@ -127,6 +128,7 @@ export default function CreateListingPage() {
       maxLendingDays,
       availabilityStatus: 'available',
       images,
+      whatsappNumber,
       pickupPointPreferenceId,
     });
 
@@ -555,6 +557,26 @@ export default function CreateListingPage() {
                     </option>
                   ))}
                 </select>
+              </div>
+
+              {/* WhatsApp Notification & Handover Coordination Number */}
+              <div>
+                <label className="font-semibold text-slate-800 block mb-1">
+                  Your WhatsApp Number (for Direct Borrow / Request Alerts):
+                </label>
+                <div className="relative">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 font-bold text-xs">📱 WA:</span>
+                  <input
+                    type="text"
+                    value={whatsappNumber}
+                    onChange={(e) => setWhatsappNumber(e.target.value)}
+                    placeholder="+91 98765 43210"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 pl-16 text-xs sm:text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  />
+                </div>
+                <span className="text-[10px] text-slate-500 mt-1 block">
+                  When another student clicks &quot;Borrow Now&quot; or requests your resource, a direct notification is sent to this WhatsApp number.
+                </span>
               </div>
             </div>
           )}

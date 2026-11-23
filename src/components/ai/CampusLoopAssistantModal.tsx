@@ -63,7 +63,7 @@ export const CampusLoopAssistantModal: React.FC<CampusLoopAssistantModalProps> =
                 </span>
               </h3>
               <p className="text-xs text-emerald-100/80">
-                Connected to {listings.length} real campus listings at Apex Institute
+                Connected to {listings.length} real campus listings at Acropolis Institute Of Technology and Research
               </p>
             </div>
           </div>

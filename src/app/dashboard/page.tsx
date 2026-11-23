@@ -56,7 +56,7 @@ export default function DashboardPage() {
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-1">
-                Apex Institute of Technology • {activeUser.completedExchanges} completed peer exchanges
+                Acropolis Institute Of Technology and Research • {activeUser.completedExchanges} completed peer exchanges
               </p>
             </div>
           </div>

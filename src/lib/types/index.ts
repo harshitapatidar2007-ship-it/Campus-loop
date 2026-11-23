@@ -90,6 +90,7 @@ export interface User {
   branch: string;
   semester: number;
   studentId: string;
+  whatsappNumber?: string;
   isVerified: boolean;
   rating: number;
   totalRatings: number;
@@ -122,6 +123,7 @@ export interface Listing {
   maxLendingDays?: number;
   availabilityStatus: ListingStatus;
   images: string[];
+  whatsappNumber?: string; // Direct WhatsApp contact mentioned during listing
   ownerId: string;
   owner: {
     id: string;

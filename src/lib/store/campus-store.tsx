@@ -196,6 +196,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
       ...data,
       id: newId,
       ownerId: activeUser.id,
+      whatsappNumber: data.whatsappNumber || activeUser.whatsappNumber || '+919876543210',
       owner: {
         id: activeUser.id,
         name: activeUser.name,

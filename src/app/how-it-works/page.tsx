@@ -83,7 +83,7 @@ export default function HowItWorksPage() {
         {/* Call to action */}
         <div className="bg-gradient-to-r from-emerald-800 to-teal-900 text-white rounded-3xl p-8 sm:p-10 text-center space-y-5">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-            Ready to test CampusLoop at Apex Institute?
+            Ready to test CampusLoop at Acropolis Institute Of Technology and Research?
           </h2>
           <p className="text-xs sm:text-sm text-emerald-100 max-w-xl mx-auto">
             Try our 2-Minute Demo Scenario from the top bar to experience the complete student-to-student handover workflow.

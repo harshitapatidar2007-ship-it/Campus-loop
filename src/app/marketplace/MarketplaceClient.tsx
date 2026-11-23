@@ -133,7 +133,7 @@ export const MarketplaceClient: React.FC = () => {
               Campus Marketplace
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Active peer exchange at Apex Institute of Technology
+              Active peer exchange at Acropolis Institute Of Technology and Research
             </p>
           </div>
 

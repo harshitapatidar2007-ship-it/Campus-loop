@@ -12,7 +12,16 @@ describe('CampusLoop Critical Workflows & Business Logic', () => {
     assert.ok(SEED_USERS['user-priya'], 'Priya (Student Seller) must exist');
     assert.ok(SEED_USERS['user-mod'], 'Moderator must exist');
     assert.ok(SEED_USERS['user-admin'], 'Admin must exist');
+    assert.equal(SEED_USERS['user-admin'].name, 'Harshita Patidar', 'Admin name must be Harshita Patidar');
     assert.ok(SEED_PICKUP_POINTS.length >= 3, 'Must have designated safe pickup hubs');
+  });
+
+  // Test 1b: WhatsApp Integration on Listings
+  test('Listings support WhatsApp numbers for direct instant messaging upon borrow', () => {
+    const priyaListing = SEED_LISTINGS.find((l) => l.ownerId === 'user-priya');
+    assert.ok(priyaListing, 'Priya listing must exist');
+    assert.ok(priyaListing.whatsappNumber, 'Listing must carry owner WhatsApp number');
+    assert.equal(priyaListing.whatsappNumber, '+919876543210');
   });
 
   // Test 2: AI Listing Assistant suggestions

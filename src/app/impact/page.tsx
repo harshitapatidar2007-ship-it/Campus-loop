@@ -58,10 +58,10 @@ export default function ImpactPage() {
               <span>Campus Sustainability & Affordability Index</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Apex Institute Resource Circulation
+              Acropolis Institute Of Technology and Research Circulation
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Real metrics from peer-to-peer exchanges across all 5 engineering departments.
+              Real metrics from peer-to-peer exchanges across all engineering departments at AITR.
             </p>
           </div>
 

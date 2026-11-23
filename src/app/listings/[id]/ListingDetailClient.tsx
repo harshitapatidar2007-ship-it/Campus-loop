@@ -47,6 +47,7 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [whatsAppSuccessData, setWhatsAppSuccessData] = useState<{ waLink: string; phone: string } | null>(null);
 
   if (!listing) {
     return (
@@ -66,12 +67,44 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
 
   const isOwner = activeUser.id === listing.ownerId;
   const isAvailable = listing.availabilityStatus === 'available';
+  const isBorrow = listing.listingType === 'borrow' || listing.listingType === 'lend';
   const savings = (listing.originalPrice || listing.price * 2) - listing.price;
+  const ownerWhatsApp = listing.whatsappNumber || '+919876543210';
 
-  const handleRequestSubmit = (e: React.FormEvent) => {
+  const sendWhatsAppNotification = async (pickupPtName: string, reqId?: string) => {
+    const waText = `Hello ${listing.owner.name.split(' ')[0]}! I'm ${activeUser.name} from Acropolis Institute Of Technology and Research (${activeUser.branch} Sem ${activeUser.semester}). I saw your resource listing for "${listing.title}" on CampusLoop and would like to ${listing.listingType} it. Can we meet at ${pickupPtName} around ${pickupTime}? CampusLoop Transaction: ${reqId ? `https://campusloop.internal/transactions/${reqId}` : 'Direct Campus Request'}`;
+
+    try {
+      const res = await fetch('/api/whatsapp/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          recipientPhone: ownerWhatsApp,
+          message: waText,
+          listingTitle: listing.title,
+          requesterName: activeUser.name,
+          pickupPointName: pickupPtName,
+          requestId: reqId,
+        }),
+      });
+      const data = await res.json();
+      if (data.success && data.waLink) {
+        setWhatsAppSuccessData({ waLink: data.waLink, phone: ownerWhatsApp });
+        // Automatically open WhatsApp in a new tab for seamless user experience
+        window.open(data.waLink, '_blank', 'noopener,noreferrer');
+      }
+    } catch (err) {
+      console.warn('Failed to call WhatsApp dispatch API:', err);
+    }
+  };
+
+  const handleRequestSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
     setIsSubmitting(true);
+
+    const chosenPoint = pickupPoints.find((p) => p.id === selectedPickupPointId);
+    const chosenPointName = chosenPoint ? chosenPoint.name : 'Central Library Entrance';
 
     const result = createRequest({
       listingId: listing.id,
@@ -81,13 +114,14 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
       message: requestMessage,
     });
 
-    setIsSubmitting(false);
-
     if (result.success && result.request) {
+      // Direct WhatsApp message sent directly to the owner's WhatsApp number mentioned during listing!
+      await sendWhatsAppNotification(chosenPointName, result.request.id);
+      setIsSubmitting(false);
       setShowRequestModal(false);
-      // Redirect to the live handover transaction tracker!
       router.push(`/transactions/${result.request.id}`);
     } else {
+      setIsSubmitting(false);
       setErrorMessage(result.error || 'Unable to submit request.');
     }
   };
@@ -313,13 +347,28 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
                   This is your own listed resource.
                 </div>
               ) : isAvailable ? (
-                <button
-                  onClick={() => setShowRequestModal(true)}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-2xl shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all text-sm flex items-center justify-center gap-2"
-                >
-                  <Sparkles className="w-4 h-4 text-emerald-200" />
-                  <span>Request Resource</span>
-                </button>
+                <div className="space-y-2">
+                  <button
+                    onClick={() => setShowRequestModal(true)}
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-2xl shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all text-sm flex items-center justify-center gap-2 hover:scale-[1.02]"
+                  >
+                    <span>📱</span>
+                    <span>{isBorrow ? 'Borrow Now (Direct WhatsApp)' : 'Request Resource'}</span>
+                  </button>
+
+                  {/* Direct WhatsApp Instant Action */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const pt = pickupPoints.find((p) => p.id === listing.pickupPointPreferenceId) || pickupPoints[0];
+                      sendWhatsAppNotification(pt.name);
+                    }}
+                    className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-semibold py-2.5 rounded-2xl transition-all text-xs flex items-center justify-center gap-1.5"
+                    title={`Send instant WhatsApp alert to ${listing.owner.name}`}
+                  >
+                    <span>💬 Direct Message on WhatsApp ({ownerWhatsApp})</span>
+                  </button>
+                </div>
               ) : (
                 <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-center text-xs font-semibold text-amber-800">
                   Currently Reserved by another student
@@ -351,6 +400,10 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
                   <div className="text-xs text-slate-500">
                     {listing.owner.branch} • Semester {listing.owner.semester}
                   </div>
+                  <div className="text-[11px] text-emerald-700 font-medium flex items-center gap-1 mt-0.5">
+                    <span>📱 WhatsApp:</span>
+                    <span className="font-mono">{ownerWhatsApp}</span>
+                  </div>
                 </div>
               </div>
 
@@ -373,7 +426,7 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
 
               <div className="text-[11px] text-emerald-800 bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-200/50 flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Verified student at Apex Institute of Technology</span>
+                <span>Verified student at Acropolis Institute Of Technology and Research</span>
               </div>
             </div>
           </div>

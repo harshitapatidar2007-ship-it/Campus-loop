@@ -22,7 +22,7 @@ export default function AdminPage() {
   const auditEvents = [
     { id: '1', action: 'CONCURRENCY_LOCK_ACQUIRED', entity: 'Listing list-dbms-korth', user: 'system', time: 'Just now' },
     { id: '2', action: 'HANDOVER_OTP_GENERATED', entity: 'Request req-20491', user: 'user-priya', time: '10 mins ago' },
-    { id: '3', action: 'STUDENT_VERIFIED_EDU', entity: 'User 2023CSE0142', user: 'dean.welfare@apex.edu.in', time: '1 hour ago' },
+    { id: '3', action: 'STUDENT_VERIFIED_EDU', entity: 'User 2023CSE0142', user: 'harshita.patidar@aitr.ac.in', time: '1 hour ago' },
     { id: '4', action: 'PICKUP_POINT_AUDIT_PASSED', entity: 'Central Library Foyer CCTV', user: 'campus-security', time: 'Today 09:00 AM' },
   ];
 

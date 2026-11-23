@@ -1,7 +1,7 @@
 -- CampusLoop Supabase Seed Data
 
 INSERT INTO campuses (id, name, code, city, state, domain)
-VALUES ('00000000-0000-0000-0000-000000000001', 'Apex Institute of Technology', 'AIT-DELHI', 'New Delhi', 'Delhi', 'apex.edu.in')
+VALUES ('00000000-0000-0000-0000-000000000001', 'Acropolis Institute Of Technology and Research', 'AITR-INDORE', 'Indore', 'Madhya Pradesh', 'aitr.ac.in')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO pickup_points (id, campus_id, name, building, description, operating_hours, is_safe_zone)

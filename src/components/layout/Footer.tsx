@@ -55,8 +55,8 @@ export const Footer: React.FC = () => {
           <div className="space-y-3">
             <h4 className="text-white font-semibold text-xs uppercase tracking-wider">Active University</h4>
             <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 space-y-1.5 text-xs">
-              <div className="font-semibold text-white">Apex Institute of Technology</div>
-              <div className="text-slate-400">North Campus, New Delhi</div>
+              <div className="font-semibold text-white">Acropolis Institute Of Technology and Research</div>
+              <div className="text-slate-400">Indore, Madhya Pradesh</div>
               <div className="text-emerald-400 text-[11px] font-medium flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                 Official Student Exchange Active

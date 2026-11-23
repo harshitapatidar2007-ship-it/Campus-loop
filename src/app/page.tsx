@@ -344,7 +344,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
           <div className="text-center space-y-2">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Voices From Apex Institute
+              Voices From Acropolis Institute Of Technology and Research
             </h2>
             <p className="text-xs sm:text-sm text-slate-500">
               Simulated feedback from our active verified campus personas
@@ -419,7 +419,7 @@ export default function HomePage() {
             Ready to give your textbooks another semester?
           </h2>
           <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto">
-            Join hundreds of classmates at Apex Institute of Technology actively recirculating academic equipment.
+            Join hundreds of classmates at Acropolis Institute Of Technology and Research actively recirculating academic equipment.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link

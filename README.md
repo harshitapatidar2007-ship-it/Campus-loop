@@ -148,10 +148,21 @@ The application features a built-in **Judge Walkthrough Toolbar** with instant 1
 
 | Role | Name | Email | Badges | Focus Area |
 | :--- | :--- | :--- | :--- | :--- |
-| **Student Buyer** | Aarav Sharma | `aarav.23cse@apex.edu.in` | Campus Verified, Fast Responder | 2nd Year CSE (Sem 4) looking for DBMS & OS resources |
-| **Student Seller** | Priya Patel | `priya.22cse@apex.edu.in` | Top Circulator, 14 Exchanges | 3rd Year CSE (Sem 6) passing down textbooks & lab kits |
-| **Campus Moderator** | Prof. K. Ramanathan | `k.ramanathan@apex.edu.in` | Faculty Advisor, Official Mod | Inspects reports, disputes, and student safety |
-| **Administrator** | Dr. Sunita Rao | `dean.welfare@apex.edu.in` | Dean Office, System Admin | Manages campus pickup points, departments & audit log |
+| **Student Buyer** | Aarav Sharma | `aarav.23cse@aitr.ac.in` | Campus Verified, Fast Responder | 2nd Year CSE (Sem 4) looking for DBMS & OS resources |
+| **Student Seller** | Priya Patel | `priya.22cse@aitr.ac.in` | Top Circulator, 14 Exchanges | 3rd Year CSE (Sem 6) passing down textbooks & lab kits (WA: `+919876543210`) |
+| **Campus Moderator** | Prof. K. Ramanathan | `k.ramanathan@aitr.ac.in` | Faculty Advisor, Official Mod | Inspects reports, disputes, and student safety |
+| **Administrator** | Harshita Patidar | `harshita.patidar@aitr.ac.in` | Dean Office, System Admin | Manages campus pickup points, departments & audit log at AITR |
+
+---
+
+## 6. WhatsApp Instant Borrow Integration
+
+CampusLoop includes direct **WhatsApp messaging integration**:
+- **Owner WhatsApp on Listing**: When students post a book or instrument, they specify their direct WhatsApp contact number.
+- **Instant "Borrow Now" Direct Message**: Clicking **"Borrow Now"** or requesting a resource immediately dispatches a formatted message directly to the real user's WhatsApp number.
+- **Dual Mode (Cloud API & Direct wa.me Link)**:
+  - Supports **WhatsApp Cloud API** (`WHATSAPP_API_KEY`, `WHATSAPP_PHONE_NUMBER_ID`) via `/api/whatsapp/send`.
+  - Automatically falls back to high-conversion direct browser WhatsApp links (`https://wa.me/...`) for instant one-click chatting on both mobile phones and desktop WhatsApp Web.
 
 ---
 

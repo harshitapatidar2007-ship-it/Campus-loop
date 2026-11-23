@@ -27,7 +27,7 @@ export const DemoBar: React.FC = () => {
           </span>
           <span className="hidden md:inline text-slate-400">|</span>
           <span className="hidden md:inline text-slate-300 font-medium">
-            🏫 Apex Institute of Technology
+            🏫 Acropolis Institute Of Technology and Research
           </span>
         </div>
 
@@ -87,10 +87,11 @@ export const DemoBar: React.FC = () => {
                 ? 'bg-amber-600 text-white font-medium shadow-sm ring-2 ring-amber-400/50'
                 : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
             }`}
-            title="Dr. Sunita Rao: Dean / System Admin"
+            title="Harshita Patidar: Admin (Acropolis Institute Of Technology and Research)"
           >
             <span>⚙️</span>
-            <span className="hidden sm:inline">Admin</span>
+            <span className="font-medium">Harshita</span>
+            <span className="hidden sm:inline text-[10px] opacity-75">(Admin)</span>
           </button>
         </div>
 
