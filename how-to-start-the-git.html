@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusLoop - How to Set Up & Run on Any PC</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --accent: #38bdf8;
+      --code-bg: #090d16;
+      --tag-bg: #1e3a5f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #f8fafc 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      background: rgba(56, 189, 248, 0.1);
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: all 0.2s;
+    }
+
+    .repo-link:hover {
+      background: rgba(56, 189, 248, 0.2);
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .step-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .code-box {
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: "Consolas", "Monaco", "Courier New", monospace;
+      font-size: 0.95rem;
+      color: #38bdf8;
+    }
+
+    .code-comment {
+      color: #64748b;
+    }
+
+    .info-card {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 36px;
+      margin-bottom: 30px;
+    }
+
+    .info-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 0.92rem;
+    }
+
+    th {
+      color: var(--text-muted);
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    td code {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">CampusLoop Developer Guide</div>
+      <h1>How to Start & Run on Any PC</h1>
+      <p class="subtitle">Complete step-by-step instructions to set up this project from GitHub on any new computer.</p>
+      <a class="repo-link" href="https://github.com/harshitapatidar2007-ship-it/Campus-loop" target="_blank" rel="noreferrer">
+        📂 GitHub Repository: harshitapatidar2007-ship-it/Campus-loop ↗
+      </a>
+    </header>
+
+    <!-- STEP 1 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Prerequisites</div>
+      </div>
+      <p>Ensure you have <strong>Node.js</strong> and <strong>Git</strong> installed on the new computer:</p>
+      <ul>
+        <li><strong>Node.js</strong> (v18 or higher recommended): Download from <a href="https://nodejs.org/" target="_blank" style="color: var(--accent);">nodejs.org</a></li>
+        <li><strong>Git</strong>: Download from <a href="https://git-scm.com/" target="_blank" style="color: var(--accent);">git-scm.com</a></li>
+      </ul>
+      <p style="margin-top: 10px;">Check in your terminal:</p>
+      <div class="code-box">
+        <code>node -v<br>npm -v<br>git --version</code>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Download / Clone the Repository</div>
+      </div>
+      <p>Open a terminal (PowerShell, Command Prompt, or Terminal) and run:</p>
+      <div class="code-box">
+        <code>git clone https://github.com/harshitapatidar2007-ship-it/Campus-loop.git<br>
+cd Campus-loop</code>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">
+        💡 <em>Alternatively: On GitHub, click <strong>Code &rarr; Download ZIP</strong>, extract the folder, and open terminal inside it.</em>
+      </p>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Install Dependencies (Generates node_modules)</div>
+      </div>
+      <p>Run the install command to download all project dependencies:</p>
+      <div class="code-box">
+        <code>npm install</code>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">
+        ⚙️ <em>This reads <code>package.json</code> and automatically installs clean, OS-compatible packages into a freshly generated <code>node_modules</code> folder.</em>
+      </p>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-title">Set Up Environment Variables (Optional)</div>
+      </div>
+      <p>If connecting to Supabase or third-party APIs, copy the sample environment file:</p>
+      <div class="code-box">
+        <code>cp .env.example .env.local <span class="code-comment"># On Windows PowerShell: copy .env.example .env.local</span></code>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">
+        Fill in your Supabase URL and Anon Key if you are using a live Supabase backend. (The app also includes a fully functional in-memory demo mode!).
+      </p>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-num">5</div>
+        <div class="step-title">Start the Development Server</div>
+      </div>
+      <p>Launch the Next.js development server:</p>
+      <div class="code-box">
+        <code>npm run dev</code>
+      </div>
+      <p>Now open your browser and navigate to:</p>
+      <div class="code-box">
+        <code><a href="http://localhost:3000" target="_blank" style="color: #10b981; text-decoration: none;">http://localhost:3000 ↗</a></code>
+      </div>
+    </div>
+
+    <!-- EXPLANATION CARD -->
+    <div class="info-card">
+      <div class="info-title">
+        ❓ Why are .git, node_modules, and .next not copied?
+      </div>
+      <p style="color: var(--text-muted); margin-bottom: 12px;">
+        When transferring code via Git or sharing a project, these three folders are <strong>never</strong> transferred manually:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Folder</th>
+            <th>Why it is not in the repository</th>
+            <th>How it is created on the new PC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.git</code></td>
+            <td>Stores Git's internal local repository logs.</td>
+            <td>Automatically created by <code>git clone</code> or <code>git init</code>.</td>
+          </tr>
+          <tr>
+            <td><code>node_modules</code></td>
+            <td>Contains ~500MB of machine-specific binary packages.</td>
+            <td>Automatically downloaded cleanly by running <code>npm install</code>.</td>
+          </tr>
+          <tr>
+            <td><code>.next</code></td>
+            <td>Temporary local build and compiler cache.</td>
+            <td>Automatically generated by <code>npm run dev</code> or <code>npm run build</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>Campus Loop &copy; 2026 &bull; Acropolis Institute of Technology and Research</p>
+    </footer>
+  </div>
+</body>
+</html>
