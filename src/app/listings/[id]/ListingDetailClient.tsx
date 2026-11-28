@@ -217,76 +217,76 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
 
           {/* Center Column: Listing Information (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-xs space-y-4">
+            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs space-y-4">
               {/* Branch & Semester compatibility */}
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-xs font-bold bg-slate-900 text-white px-2.5 py-0.5 rounded-lg">
                   {listing.branchCompatibility.join(', ')}
                 </span>
-                <span className="text-xs font-medium bg-emerald-100 text-emerald-900 px-2.5 py-0.5 rounded-lg">
+                <span className="text-xs font-bold bg-emerald-100 text-emerald-950 px-2.5 py-0.5 rounded-lg border border-emerald-300">
                   Semester {listing.semesterCompatibility.join(', ')}
                 </span>
-                <span className="text-xs bg-slate-100 text-slate-600 px-2.5 py-0.5 rounded-lg">
+                <span className="text-xs font-bold bg-slate-200 text-slate-900 px-2.5 py-0.5 rounded-lg border border-slate-300">
                   {listing.academicYear}
                 </span>
               </div>
 
               {/* Title & Subject */}
               <div>
-                <h1 className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
+                <h1 className="text-xl sm:text-2xl font-extrabold text-slate-950 leading-snug">
                   {listing.title}
                 </h1>
-                <p className="text-xs sm:text-sm font-medium text-emerald-700 mt-1">
+                <p className="text-xs sm:text-sm font-bold text-emerald-800 mt-1">
                   Subject: {listing.subject} {listing.courseCode ? `(${listing.courseCode})` : ''}
                 </p>
               </div>
 
               {/* Author / Edition / ISBN if applicable */}
               {(listing.author || listing.isbn || listing.edition) && (
-                <div className="pt-3 border-t border-slate-100 text-xs space-y-1.5 text-slate-600">
+                <div className="pt-3 border-t border-slate-200 text-xs space-y-1.5 text-slate-800 font-medium">
                   {listing.author && (
                     <div>
-                      <span className="font-semibold text-slate-800">Author:</span> {listing.author}
+                      <span className="font-bold text-slate-950">Author:</span> {listing.author}
                     </div>
                   )}
                   {listing.edition && (
                     <div>
-                      <span className="font-semibold text-slate-800">Edition:</span> {listing.edition}
+                      <span className="font-bold text-slate-950">Edition:</span> {listing.edition}
                     </div>
                   )}
                   {listing.isbn && (
                     <div>
-                      <span className="font-semibold text-slate-800">ISBN:</span>{' '}
-                      <span className="font-mono">{listing.isbn}</span>
+                      <span className="font-bold text-slate-950">ISBN:</span>{' '}
+                      <span className="font-mono font-bold text-slate-900">{listing.isbn}</span>
                     </div>
                   )}
                 </div>
               )}
 
               {/* Description */}
-              <div className="pt-3 border-t border-slate-100 space-y-2">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+              <div className="pt-3 border-t border-slate-200 space-y-2">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700">
                   About this resource:
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                <p className="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed whitespace-pre-line">
                   {listing.description}
                 </p>
               </div>
 
               {/* Condition Notes */}
               {listing.conditionNotes && (
-                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-xs space-y-1">
-                  <span className="font-bold text-slate-800 block">Condition Notes:</span>
-                  <p className="text-slate-600">{listing.conditionNotes}</p>
+                <div className="p-3.5 bg-slate-100 rounded-xl border border-slate-300 text-xs space-y-1">
+                  <span className="font-bold text-slate-950 block">Condition Notes:</span>
+                  <p className="text-slate-800 font-medium">{listing.conditionNotes}</p>
                 </div>
               )}
 
               {/* Preferred Campus Pickup Point */}
-              <div className="pt-2 border-t border-slate-100 flex items-start gap-2 text-xs text-slate-600">
-                <MapPin className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <div className="pt-2 border-t border-slate-200 flex items-start gap-2 text-xs text-slate-800 font-medium">
+                <MapPin className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-slate-800">Preferred Pickup Point:</span>
-                  <div>{listing.pickupPointPreferenceName || 'Central Library Entrance'}</div>
+                  <span className="font-bold text-slate-950">Preferred Pickup Point:</span>
+                  <div className="text-slate-900 font-semibold">{listing.pickupPointPreferenceName || 'Central Library Entrance'}</div>
                 </div>
               </div>
             </div>
@@ -295,9 +295,9 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
             <div className="text-right">
               <button
                 onClick={() => setShowReportModal(true)}
-                className="text-xs text-slate-400 hover:text-rose-600 inline-flex items-center gap-1 font-medium transition-colors"
+                className="text-xs text-slate-600 hover:text-rose-700 inline-flex items-center gap-1 font-bold transition-colors"
               >
-                <AlertTriangle className="w-3.5 h-3.5" />
+                <AlertTriangle className="w-3.5 h-3.5 text-slate-600" />
                 <span>Report this listing</span>
               </button>
             </div>
@@ -306,37 +306,37 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
           {/* Right Column: Pricing & Action Card + Owner Profile (3 cols) */}
           <div className="lg:col-span-3 space-y-5">
             {/* Action Box */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-md space-y-5">
+            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-md space-y-5">
               <div>
-                <span className="text-xs text-slate-400 font-medium uppercase tracking-wider block">
+                <span className="text-xs text-slate-700 font-bold uppercase tracking-wider block">
                   Campus Price
                 </span>
                 <div className="flex items-baseline gap-2 mt-1">
-                  <span className="text-3xl font-black text-slate-900 font-mono">
+                  <span className="text-3xl font-black text-slate-950 font-mono">
                     {listing.price === 0 ? 'FREE' : formatCurrency(listing.price)}
                   </span>
                   {listing.originalPrice && listing.originalPrice > listing.price && (
-                    <span className="text-sm text-slate-400 line-through">
+                    <span className="text-sm text-slate-500 line-through font-semibold">
                       {formatCurrency(listing.originalPrice)}
                     </span>
                   )}
                 </div>
 
                 {savings > 0 && listing.price > 0 && (
-                  <div className="mt-2 text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit border border-emerald-200/60">
+                  <div className="mt-2 text-xs font-bold text-emerald-950 bg-emerald-100 px-2.5 py-1 rounded-lg w-fit border border-emerald-300">
                     You save ~{formatCurrency(savings)} vs retail!
                   </div>
                 )}
 
                 {listing.deposit ? (
-                  <div className="mt-2 text-xs text-slate-500">
-                    Refundable security deposit: <strong>{formatCurrency(listing.deposit)}</strong>
+                  <div className="mt-2 text-xs text-slate-800 font-medium">
+                    Refundable security deposit: <strong className="text-slate-950">{formatCurrency(listing.deposit)}</strong>
                   </div>
                 ) : null}
 
                 {listing.maxLendingDays ? (
-                  <div className="mt-1 text-xs text-slate-500">
-                    Lending duration: up to <strong>{listing.maxLendingDays} days</strong>
+                  <div className="mt-1 text-xs text-slate-800 font-medium">
+                    Lending duration: up to <strong className="text-slate-950">{listing.maxLendingDays} days</strong>
                   </div>
                 ) : null}
               </div>
@@ -377,8 +377,8 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
             </div>
 
             {/* Owner Verification Card */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs space-y-4">
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <div className="bg-white rounded-3xl border border-slate-200 p-5 shadow-xs space-y-4">
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-800">
                 Resource Owner
               </div>
 
@@ -388,7 +388,7 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
                   <img
                     src={listing.owner.avatar}
                     alt={listing.owner.name}
-                    className="w-12 h-12 rounded-full object-cover ring-2 ring-emerald-500/30"
+                    className="w-12 h-12 rounded-full object-cover ring-2 ring-emerald-500/40"
                   />
                   {listing.owner.isVerified && (
                     <ShieldCheck className="w-4 h-4 text-emerald-600 fill-white absolute -bottom-1 -right-1" />
@@ -396,36 +396,36 @@ export const ListingDetailClient: React.FC<{ listingId: string }> = ({ listingId
                 </div>
 
                 <div>
-                  <h4 className="font-bold text-slate-900 text-sm">{listing.owner.name}</h4>
-                  <div className="text-xs text-slate-500">
+                  <h4 className="font-bold text-slate-950 text-sm">{listing.owner.name}</h4>
+                  <div className="text-xs text-slate-700 font-semibold">
                     {listing.owner.branch} • Semester {listing.owner.semester}
                   </div>
-                  <div className="text-[11px] text-emerald-700 font-medium flex items-center gap-1 mt-0.5">
+                  <div className="text-xs text-emerald-800 font-bold flex items-center gap-1 mt-0.5">
                     <span>📱 WhatsApp:</span>
                     <span className="font-mono">{ownerWhatsApp}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-center text-xs">
-                <div className="p-2 bg-slate-50 rounded-xl">
-                  <div className="font-bold text-slate-900 flex items-center justify-center gap-1">
-                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+              <div className="pt-3 border-t border-slate-200 grid grid-cols-2 gap-2 text-center text-xs">
+                <div className="p-2.5 bg-slate-100 rounded-xl border border-slate-200">
+                  <div className="font-bold text-slate-950 flex items-center justify-center gap-1">
+                    <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
                     <span>{listing.owner.rating}</span>
                   </div>
-                  <div className="text-[10px] text-slate-500">Peer Rating</div>
+                  <div className="text-xs text-slate-700 font-semibold">Peer Rating</div>
                 </div>
 
-                <div className="p-2 bg-slate-50 rounded-xl">
-                  <div className="font-bold text-slate-900">
+                <div className="p-2.5 bg-slate-100 rounded-xl border border-slate-200">
+                  <div className="font-bold text-slate-950">
                     {listing.owner.completedExchanges}
                   </div>
-                  <div className="text-[10px] text-slate-500">Circulated</div>
+                  <div className="text-xs text-slate-700 font-semibold">Circulated</div>
                 </div>
               </div>
 
-              <div className="text-[11px] text-emerald-800 bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-200/50 flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="text-xs text-emerald-950 font-semibold bg-emerald-100 p-2.5 rounded-xl border border-emerald-300 flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
                 <span>Verified student at Acropolis Institute Of Technology and Research</span>
               </div>
             </div>

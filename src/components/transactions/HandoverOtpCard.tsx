@@ -125,22 +125,22 @@ export const HandoverOtpCard: React.FC<HandoverOtpCardProps> = ({ request, curre
         ) : isRequester ? (
           /* State 2: Current user is the Requester (Buyer/Borrower) */
           <div className="space-y-4">
-            <div className="bg-emerald-950/60 border border-emerald-700/60 rounded-2xl p-5 text-center space-y-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-300">
+            <div className="bg-emerald-950/80 border border-emerald-500 rounded-2xl p-5 text-center space-y-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
                 Your Secret Handover OTP Code:
               </span>
               <div className="text-4xl sm:text-5xl font-mono font-black tracking-widest text-emerald-300 select-all py-1">
                 {request.handoverCode || '492817'}
               </div>
-              <p className="text-xs text-emerald-200/80 max-w-sm mx-auto">
+              <p className="text-xs text-white font-medium max-w-sm mx-auto">
                 Present this 6-digit code to <strong>{request.owner.name}</strong> when you meet at {request.confirmedPickupPointName || request.proposedPickupPointName}.
               </p>
             </div>
 
-            <div className="text-[11px] text-emerald-200/70 bg-emerald-950/40 p-3 rounded-xl border border-emerald-800/40 flex items-start gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="text-xs text-emerald-100 font-medium bg-emerald-950/70 p-3.5 rounded-xl border border-emerald-600 flex items-start gap-2">
+              <ShieldCheck className="w-4 h-4 text-emerald-300 shrink-0 mt-0.5" />
               <span>
-                <strong>Safety Rule:</strong> Never reveal this code via chat or phone before physical inspection of the resource. Only give it once the item is in your hands.
+                <strong className="text-white">Safety Rule:</strong> Never reveal this code via chat or phone before physical inspection of the resource. Only give it once the item is in your hands.
               </span>
             </div>
           </div>
@@ -148,7 +148,7 @@ export const HandoverOtpCard: React.FC<HandoverOtpCardProps> = ({ request, curre
           /* State 3: Current user is the Owner (Lender/Seller) */
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-emerald-200 uppercase tracking-wider block">
+              <label className="text-xs font-bold text-white uppercase tracking-wider block">
                 Enter Requester&apos;s 6-Digit Handover Code:
               </label>
               <div className="flex gap-2">
@@ -158,12 +158,12 @@ export const HandoverOtpCard: React.FC<HandoverOtpCardProps> = ({ request, curre
                   value={enteredCode}
                   onChange={(e) => setEnteredCode(e.target.value.replace(/\D/g, ''))}
                   placeholder="e.g. 492817"
-                  className="bg-emerald-950/80 border border-emerald-600 rounded-xl px-4 py-3 text-center text-xl sm:text-2xl font-mono font-bold tracking-widest text-emerald-300 placeholder:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 flex-1"
+                  className="bg-emerald-950 border-2 border-emerald-400 rounded-xl px-4 py-3 text-center text-xl sm:text-2xl font-mono font-black tracking-widest text-white placeholder:text-emerald-400/80 focus:outline-none focus:ring-2 focus:ring-emerald-300 flex-1"
                 />
                 <button
                   onClick={handleVerify}
                   disabled={isVerifying || enteredCode.length !== 6}
-                  className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-slate-950 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5"
+                  className="bg-emerald-400 hover:bg-emerald-300 disabled:opacity-50 text-slate-950 font-black px-5 py-3 rounded-xl text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5"
                 >
                   <span>Verify Handover</span>
                   <ArrowRight className="w-4 h-4" />
@@ -171,10 +171,10 @@ export const HandoverOtpCard: React.FC<HandoverOtpCardProps> = ({ request, curre
               </div>
 
               {/* Demo Hint */}
-              <div className="flex items-center justify-between text-[11px] text-emerald-300/80 pt-1">
+              <div className="flex items-center justify-between text-xs text-emerald-200 font-semibold pt-1">
                 <span>Code attempt: {request.handoverAttempts}/5</span>
-                <span className="font-mono bg-emerald-800/40 px-2 py-0.5 rounded">
-                  Demo hint: Code is <strong>{request.handoverCode || '492817'}</strong>
+                <span className="font-mono bg-emerald-800/80 px-2.5 py-1 rounded text-white border border-emerald-600">
+                  Demo hint: Code is <strong className="text-emerald-200">{request.handoverCode || '492817'}</strong>
                 </span>
               </div>
 

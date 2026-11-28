@@ -84,7 +84,7 @@ interface CampusStoreContextType {
   toggleCampusVerification: (userId: string) => void;
 }
 
-const STORAGE_KEY = 'campusloop_state_v1';
+const STORAGE_KEY = 'campusloop_state_v2';
 
 const CampusStoreContext = createContext<CampusStoreContextType | null>(null);
 
@@ -117,7 +117,15 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
           setReports(parsed.reports || []);
           setNotifications(parsed.notifications || SEED_NOTIFICATIONS);
           setImpactStats(parsed.impactStats || SEED_IMPACT_STATS);
-          setChatMessages(parsed.chatMessages || {});
+          // Deduplicate chat messages by id to prevent React key collisions
+          const rawChat: Record<string, Array<{ id: string; senderId: string; senderName: string; content: string; createdAt: string }>> = parsed.chatMessages || {};
+          const dedupedChat = Object.fromEntries(
+            Object.entries(rawChat).map(([key, msgs]) => [
+              key,
+              Array.from(new Map(msgs.map((m) => [m.id, m])).values()),
+            ])
+          );
+          setChatMessages(dedupedChat);
           if (parsed.activeUserId) setActiveUserId(parsed.activeUserId);
         }
       }
@@ -329,7 +337,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
       ...prev,
       [newRequestId]: [
         {
-          id: `msg-${Date.now()}`,
+          id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
           senderId: activeUser.id,
           senderName: activeUser.name,
           content: params.message || `Hi! I submitted a request for "${listing.title}". Proposed pickup: ${newRequest.proposedPickupPointName} at ${params.pickupTime}.`,
@@ -340,7 +348,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     // Notification to owner
     const notif: NotificationItem = {
-      id: `notif-${Date.now()}`,
+      id: `notif-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       userId: owner.id,
       title: 'New Resource Request!',
       message: `${activeUser.name} requested "${listing.title}". Review and accept handover schedule.`,
@@ -410,7 +418,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
       // Notify Requester
       const notif: NotificationItem = {
-        id: `notif-${Date.now()}`,
+        id: `notif-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
         userId: target.requesterId,
         title: 'Request Accepted! Handover Scheduled',
         message: `${activeUser.name} accepted your request for "${target.listing.title}". Your 6-digit pickup code is ready.`,
@@ -427,7 +435,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
         [requestId]: [
           ...(prevMsgs[requestId] || []),
           {
-            id: `msg-${Date.now()}`,
+            id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
             senderId: activeUser.id,
             senderName: activeUser.name,
             content: `Accepted! Pickup confirmed at ${updatedTarget.confirmedPickupPointName} around ${updatedTarget.confirmedPickupTime}. Bring your one-time verification code.`,
@@ -582,7 +590,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
       // Notifications
       const notifReq: NotificationItem = {
-        id: `notif-${Date.now()}-1`,
+        id: `notif-${Date.now()}-${Math.random().toString(36).slice(2, 7)}-1`,
         userId: target.requesterId,
         title: 'Handover Completed! 🎉',
         message: `Exchange verified with ${activeUser.name}. You saved ₹${actualSavings}! Don't forget to leave feedback.`,
@@ -592,7 +600,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
         createdAt: new Date().toISOString(),
       };
       const notifOwn: NotificationItem = {
-        id: `notif-${Date.now()}-2`,
+        id: `notif-${Date.now()}-${Math.random().toString(36).slice(2, 7)}-2`,
         userId: target.ownerId,
         title: 'Handover Completed! 🎉',
         message: `Handover verified for "${target.listing.title}". Thank you for giving resources another semester!`,
@@ -647,7 +655,7 @@ export const CampusStoreProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const sendChatMessage = useCallback((requestId: string, content: string) => {
     if (!content.trim()) return;
     const newMsg = {
-      id: `msg-${Date.now()}`,
+      id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       senderId: activeUser.id,
       senderName: activeUser.name,
       content: content.trim(),

@@ -17,81 +17,81 @@ export const DemoBar: React.FC = () => {
   };
 
   return (
-    <div className="bg-slate-900 text-slate-100 text-xs py-2 px-3 sm:px-6 border-b border-slate-800 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+    <div className="bg-slate-900 text-slate-100 text-xs py-2.5 px-3 sm:px-6 border-b border-slate-800 sticky top-0 z-50 shadow-md">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2.5">
         {/* Left: Demo badge & campus */}
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1 font-semibold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">
-            <Sparkles className="w-3 h-3" />
+          <span className="flex items-center gap-1.5 font-bold bg-emerald-500/25 text-emerald-300 px-2.5 py-1 rounded-full border border-emerald-400/50">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
             HACKATHON DEMO MODE
           </span>
-          <span className="hidden md:inline text-slate-400">|</span>
-          <span className="hidden md:inline text-slate-300 font-medium">
+          <span className="hidden md:inline text-slate-400 font-bold">|</span>
+          <span className="hidden md:inline text-white font-semibold">
             🏫 Acropolis Institute Of Technology and Research
           </span>
         </div>
 
         {/* Center: Switch Accounts */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          <span className="text-slate-400 hidden lg:inline mr-1">Switch Persona:</span>
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <span className="text-slate-200 font-bold hidden lg:inline mr-1">Switch Persona:</span>
           
           {/* Aarav (Buyer) */}
           <button
             onClick={() => switchUser('user-aarav')}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all font-semibold ${
               activeUser.id === 'user-aarav'
-                ? 'bg-emerald-600 text-white font-medium shadow-sm ring-2 ring-emerald-400/50'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+                ? 'bg-emerald-600 text-white shadow-md ring-2 ring-emerald-300'
+                : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700'
             }`}
             title="Aarav Sharma: 2nd Year CSE student (Requester/Buyer)"
           >
             <span>👨‍🎓</span>
-            <span className="font-medium">Aarav</span>
-            <span className="hidden sm:inline text-[10px] opacity-75">(Buyer)</span>
+            <span>Aarav</span>
+            <span className={`hidden sm:inline text-xs font-bold ${activeUser.id === 'user-aarav' ? 'text-emerald-100' : 'text-emerald-300'}`}>(Buyer)</span>
           </button>
 
           {/* Priya (Seller) */}
           <button
             onClick={() => switchUser('user-priya')}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all font-semibold ${
               activeUser.id === 'user-priya'
-                ? 'bg-emerald-600 text-white font-medium shadow-sm ring-2 ring-emerald-400/50'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+                ? 'bg-emerald-600 text-white shadow-md ring-2 ring-emerald-300'
+                : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700'
             }`}
             title="Priya Patel: 3rd Year CSE student (Seller/Lender)"
           >
             <span>👩‍🎓</span>
-            <span className="font-medium">Priya</span>
-            <span className="hidden sm:inline text-[10px] opacity-75">(Seller)</span>
+            <span>Priya</span>
+            <span className={`hidden sm:inline text-xs font-bold ${activeUser.id === 'user-priya' ? 'text-emerald-100' : 'text-emerald-300'}`}>(Seller)</span>
           </button>
 
           {/* Moderator */}
           <button
             onClick={() => switchUser('user-mod')}
-            className={`flex items-center gap-1.5 px-2 py-1 rounded-md transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all font-semibold ${
               activeUser.id === 'user-mod'
-                ? 'bg-purple-600 text-white font-medium shadow-sm ring-2 ring-purple-400/50'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+                ? 'bg-purple-600 text-white shadow-md ring-2 ring-purple-300'
+                : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700'
             }`}
             title="Prof. K. Ramanathan: Campus Moderator"
           >
             <span>🛡️</span>
-            <span className="hidden sm:inline">Mod</span>
+            <span>Mod</span>
           </button>
 
           {/* Admin */}
           <button
             onClick={() => switchUser('user-admin')}
-            className={`flex items-center gap-1.5 px-2 py-1 rounded-md transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all font-semibold ${
               activeUser.id === 'user-admin'
-                ? 'bg-amber-600 text-white font-medium shadow-sm ring-2 ring-amber-400/50'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+                ? 'bg-amber-600 text-white shadow-md ring-2 ring-amber-300'
+                : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700'
             }`}
             title="Harshita Patidar: Admin (Acropolis Institute Of Technology and Research)"
           >
             <span>⚙️</span>
-            <span className="font-medium">Harshita</span>
-            <span className="hidden sm:inline text-[10px] opacity-75">(Admin)</span>
+            <span>Harshita</span>
+            <span className={`hidden sm:inline text-xs font-bold ${activeUser.id === 'user-admin' ? 'text-amber-100' : 'text-amber-300'}`}>(Admin)</span>
           </button>
         </div>
 
@@ -100,10 +100,10 @@ export const DemoBar: React.FC = () => {
           {/* Toggle verification state for active user */}
           <button
             onClick={() => toggleCampusVerification(activeUser.id)}
-            className={`flex items-center gap-1 px-2 py-1 rounded border transition-colors ${
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border font-semibold transition-colors ${
               activeUser.isVerified
-                ? 'border-emerald-500/50 text-emerald-400 bg-emerald-500/10'
-                : 'border-red-500/50 text-red-400 bg-red-500/10'
+                ? 'border-emerald-400 text-emerald-300 bg-emerald-950/60'
+                : 'border-red-400 text-red-300 bg-red-950/60'
             }`}
             title="Toggle simulated institutional ID verification"
           >
@@ -114,19 +114,19 @@ export const DemoBar: React.FC = () => {
           {/* 2-Min Live Walkthrough Button */}
           <button
             onClick={() => setShowScenarioModal(true)}
-            className="flex items-center gap-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-medium px-2.5 py-1 rounded shadow-sm"
+            className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold px-3 py-1.5 rounded-lg shadow-sm"
           >
-            <PlayCircle className="w-3.5 h-3.5" />
+            <PlayCircle className="w-4 h-4" />
             <span>2-Min Demo Script</span>
           </button>
 
           {/* Reset Demo Data */}
           <button
             onClick={handleReset}
-            className="flex items-center gap-1 text-slate-400 hover:text-slate-200 bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded transition-colors"
+            className="flex items-center gap-1.5 text-slate-100 hover:text-white bg-slate-800 hover:bg-slate-700 font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700 transition-colors"
             title="Reset listings, requests and ratings to fresh demo state"
           >
-            <RefreshCw className="w-3 h-3" />
+            <RefreshCw className="w-3.5 h-3.5" />
             <span className="hidden md:inline">Reset</span>
           </button>
         </div>

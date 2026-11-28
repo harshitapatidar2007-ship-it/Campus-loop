@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full bg-slate-50 antialiased text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="en" className="h-full bg-slate-50 antialiased text-slate-950 selection:bg-emerald-200 selection:text-emerald-950">
+      <body className="min-h-full flex flex-col font-sans bg-slate-50 text-slate-950">
         <CampusStoreProvider>
           <DemoBar />
           <Suspense fallback={<div className="h-16 bg-white border-b border-slate-200" />}>

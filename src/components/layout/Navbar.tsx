@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCampusStore } from '@/lib/store/campus-store';
@@ -30,8 +30,11 @@ export const Navbar: React.FC = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showAIModal, setShowAIModal] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const unreadCount = notifications.filter((n) => !n.isRead).length;
+  useEffect(() => { setMounted(true); }, []);
+
+  const unreadCount = mounted ? notifications.filter((n) => !n.isRead).length : 0;
 
   const navLinks = [
     { label: 'Marketplace', href: '/marketplace', icon: BookOpen },
@@ -40,10 +43,10 @@ export const Navbar: React.FC = () => {
     { label: 'Campus Impact', href: '/impact', icon: TrendingUp },
   ];
 
-  if (activeUser.role === 'moderator') {
+  if (mounted && activeUser.role === 'moderator') {
     navLinks.push({ label: 'Moderation Portal', href: '/moderator', icon: ShieldCheck });
   }
-  if (activeUser.role === 'admin') {
+  if (mounted && activeUser.role === 'admin') {
     navLinks.push({ label: 'Admin Portal', href: '/admin', icon: ShieldCheck });
   }
 
@@ -58,10 +61,10 @@ export const Navbar: React.FC = () => {
                 <span className="text-xl font-bold tracking-tighter">⟲</span>
               </div>
               <div>
-                <span className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-1.5">
-                  Campus<span className="text-emerald-600">Loop</span>
+                <span className="text-lg font-bold text-slate-950 tracking-tight flex items-center gap-1.5">
+                  Campus<span className="text-emerald-700">Loop</span>
                 </span>
-                <span className="hidden sm:block text-[10px] text-slate-500 font-medium tracking-wide">
+                <span className="hidden sm:block text-[11px] text-slate-700 font-semibold tracking-wide">
                   Give resources another semester
                 </span>
               </div>
@@ -76,13 +79,13 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                       isActive
-                        ? 'bg-emerald-50 text-emerald-800'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                        ? 'bg-emerald-100 text-emerald-950 border border-emerald-300 shadow-2xs'
+                        : 'text-slate-800 hover:text-slate-950 hover:bg-slate-100'
                     }`}
                   >
-                    <Icon className="w-4 h-4 opacity-75" />
+                    <Icon className="w-4 h-4 text-emerald-700" />
                     <span>{link.label}</span>
                   </Link>
                 );
@@ -95,10 +98,10 @@ export const Navbar: React.FC = () => {
             {/* AI Assistant Button */}
             <button
               onClick={() => setShowAIModal(true)}
-              className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 hover:border-emerald-300 text-emerald-800 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium shadow-xs transition-all hover:shadow-sm"
+              className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-100 to-teal-100 border border-emerald-300 hover:border-emerald-400 text-emerald-950 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold shadow-xs transition-all hover:shadow-sm"
               title="Ask CampusLoop Intelligence"
             >
-              <Sparkles className="w-4 h-4 text-emerald-600 animate-pulse" />
+              <Sparkles className="w-4 h-4 text-emerald-700 animate-pulse" />
               <span className="hidden sm:inline">Ask AI</span>
             </button>
 
@@ -185,13 +188,13 @@ export const Navbar: React.FC = () => {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={activeUser.avatar}
-                  alt={activeUser.name}
+                  src={mounted ? activeUser.avatar : ''}
+                  alt={mounted ? activeUser.name : ''}
                   className="w-8 h-8 rounded-full object-cover ring-2 ring-emerald-500/20"
                 />
                 <div className="hidden lg:block text-left text-xs">
-                  <div className="font-semibold text-slate-800 leading-tight">{activeUser.name}</div>
-                  <div className="text-[10px] text-slate-500 capitalize">{activeUser.role}</div>
+                  <div className="font-semibold text-slate-800 leading-tight">{mounted ? activeUser.name : ''}</div>
+                  <div className="text-[10px] text-slate-500 capitalize">{mounted ? activeUser.role : ''}</div>
                 </div>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
               </button>

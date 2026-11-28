@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f8fafc;
+  --foreground: #090d16;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f8fafc;
+  color: #090d16;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure no dark-mode browser inversion washes out text or causes white-on-white text */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f8fafc;
+    --foreground: #090d16;
+  }
+}
+
+/* ========================================================
+   HIGH CONTRAST & ACCESSIBLE TEXT COMBINATIONS
+   ======================================================== */
+
+/* Muted slate text overrides on light surfaces */
+.text-slate-400,
+.text-gray-400 {
+  color: #334155 !important; /* Slate-700 instead of faint #94a3b8 */
+}
+
+.text-slate-500,
+.text-gray-500 {
+  color: #1e293b !important; /* Slate-800 instead of #64748b */
+}
+
+.text-slate-600,
+.text-gray-600 {
+  color: #0f172a !important; /* Slate-900 */
+}
+
+/* High contrast headings and titles */
+h1, h2, h3, h4, h5, h6 {
+  color: #090d16;
+  font-weight: 700;
+}
+
+/* Labels and form field titles */
+label {
+  color: #0f172a !important;
+  font-weight: 600;
+}
+
+/* Form input and text colors */
+input, select, textarea {
+  color: #090d16 !important;
+  font-weight: 500;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #475569 !important; /* Clear Slate-600 placeholder */
+  opacity: 1 !important;
+}
+
+/* High-contrast text on dark components (DemoBar, Footer, Dark Banners) */
+.bg-slate-900 .text-slate-400,
+.bg-slate-950 .text-slate-400,
+.bg-slate-900 .text-slate-500,
+.bg-slate-950 .text-slate-500,
+.bg-slate-900 .text-slate-600,
+.bg-slate-950 .text-slate-600 {
+  color: #cbd5e1 !important; /* Crisp light slate on dark background */
+}
+
+.bg-slate-900 .text-slate-300,
+.bg-slate-950 .text-slate-300 {
+  color: #f8fafc !important; /* Bright crisp text */
+}
+
+.bg-slate-900 h1, .bg-slate-900 h2, .bg-slate-900 h3, .bg-slate-900 h4,
+.bg-slate-950 h1, .bg-slate-950 h2, .bg-slate-950 h3, .bg-slate-950 h4 {
+  color: #ffffff !important;
+}
+
+/* Dark mode inputs (like Handover OTP input on dark background) */
+.bg-emerald-950 input,
+.bg-teal-950 input,
+.bg-slate-900 input {
+  color: #ffffff !important;
+}
+
+.bg-emerald-950 input::placeholder,
+.bg-teal-950 input::placeholder,
+.bg-slate-900 input::placeholder {
+  color: #6ee7b7 !important;
+  opacity: 0.8 !important;
+}
+
+/* High contrast focus ring for accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
 }

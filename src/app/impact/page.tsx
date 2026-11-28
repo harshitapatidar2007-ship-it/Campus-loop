@@ -53,21 +53,21 @@ export default function ImpactPage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-2xs">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/60 mb-2">
-              <Recycle className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-950 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300 mb-2">
+              <Recycle className="w-3.5 h-3.5 text-emerald-700" />
               <span>Campus Sustainability & Affordability Index</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
               Acropolis Institute Of Technology and Research Circulation
             </h1>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+            <p className="text-xs sm:text-sm text-slate-700 font-semibold mt-1">
               Real metrics from peer-to-peer exchanges across all engineering departments at AITR.
             </p>
           </div>
 
           <div className="text-right">
-            <span className="text-xs text-slate-400 font-medium block">Total Peer Savings</span>
-            <span className="text-2xl sm:text-3xl font-black text-emerald-700 font-mono">
+            <span className="text-xs text-slate-700 font-bold block">Total Peer Savings</span>
+            <span className="text-2xl sm:text-3xl font-black text-emerald-800 font-mono">
               {formatCurrency(impactStats.totalSavingsRupees)}
             </span>
           </div>
@@ -75,54 +75,54 @@ export default function ImpactPage() {
 
         {/* 4 Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-2">
-            <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
+          <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs space-y-2">
+            <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
               💰
             </div>
-            <span className="text-xs text-slate-400 uppercase font-semibold">Student Savings</span>
-            <div className="text-2xl font-black text-slate-900 font-mono">
+            <span className="text-xs text-slate-800 uppercase font-bold">Student Savings</span>
+            <div className="text-2xl font-black text-slate-950 font-mono">
               {formatCurrency(impactStats.totalSavingsRupees)}
             </div>
-            <p className="text-[11px] text-emerald-600 font-medium">
+            <p className="text-xs text-emerald-800 font-bold">
               Average ₹650 saved per transaction
             </p>
           </div>
 
-          <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-2">
-            <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center font-bold">
+          <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs space-y-2">
+            <div className="w-10 h-10 rounded-2xl bg-teal-100 text-teal-800 flex items-center justify-center font-bold">
               📚
             </div>
-            <span className="text-xs text-slate-400 uppercase font-semibold">Items Recirculated</span>
-            <div className="text-2xl font-black text-slate-900 font-mono">
+            <span className="text-xs text-slate-800 uppercase font-bold">Items Recirculated</span>
+            <div className="text-2xl font-black text-slate-950 font-mono">
               {impactStats.resourcesReusedCount}
             </div>
-            <p className="text-[11px] text-teal-600 font-medium">
+            <p className="text-xs text-teal-800 font-bold">
               {impactStats.booksCirculatedCount} books & {impactStats.labKitsReusedCount} lab kits
             </p>
           </div>
 
-          <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-2">
-            <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
+          <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs space-y-2">
+            <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center font-bold">
               🌿
             </div>
-            <span className="text-xs text-slate-400 uppercase font-semibold">Carbon Avoided</span>
-            <div className="text-2xl font-black text-slate-900 font-mono">
+            <span className="text-xs text-slate-800 uppercase font-bold">Carbon Avoided</span>
+            <div className="text-2xl font-black text-slate-950 font-mono">
               {impactStats.co2AvoidedKg} kg
             </div>
-            <p className="text-[11px] text-blue-600 font-medium">
+            <p className="text-xs text-blue-800 font-bold">
               Lifecycle manufacturing footprint spared
             </p>
           </div>
 
-          <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-2">
-            <div className="w-10 h-10 rounded-2xl bg-cyan-50 text-cyan-700 flex items-center justify-center font-bold">
+          <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs space-y-2">
+            <div className="w-10 h-10 rounded-2xl bg-cyan-100 text-cyan-800 flex items-center justify-center font-bold">
               💧
             </div>
-            <span className="text-xs text-slate-400 uppercase font-semibold">Water Conserved</span>
-            <div className="text-2xl font-black text-slate-900 font-mono">
+            <span className="text-xs text-slate-800 uppercase font-bold">Water Conserved</span>
+            <div className="text-2xl font-black text-slate-950 font-mono">
               {impactStats.waterSavedLiters.toLocaleString()} L
             </div>
-            <p className="text-[11px] text-cyan-600 font-medium">
+            <p className="text-xs text-cyan-800 font-bold">
               Paper milling industrial water preserved
             </p>
           </div>

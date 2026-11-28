@@ -29,34 +29,34 @@ export function formatDate(dateString: string): string {
 export function getConditionBadgeColor(condition: string): string {
   switch (condition) {
     case 'new':
-      return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+      return 'bg-emerald-100 text-emerald-950 border-emerald-400 font-bold';
     case 'like_new':
-      return 'bg-teal-50 text-teal-700 border-teal-200';
+      return 'bg-teal-100 text-teal-950 border-teal-400 font-bold';
     case 'good':
-      return 'bg-blue-50 text-blue-700 border-blue-200';
+      return 'bg-blue-100 text-blue-950 border-blue-400 font-bold';
     case 'fair':
-      return 'bg-amber-50 text-amber-700 border-amber-200';
+      return 'bg-amber-100 text-amber-950 border-amber-400 font-bold';
     case 'heavily_used':
-      return 'bg-orange-50 text-orange-700 border-orange-200';
+      return 'bg-orange-100 text-orange-950 border-orange-400 font-bold';
     default:
-      return 'bg-slate-50 text-slate-700 border-slate-200';
+      return 'bg-slate-200 text-slate-950 border-slate-400 font-bold';
   }
 }
 
 export function getModeBadgeColor(mode: string): string {
   switch (mode) {
     case 'sell':
-      return 'bg-emerald-600 text-white';
+      return 'bg-emerald-700 text-white font-bold tracking-wide';
     case 'borrow':
-      return 'bg-indigo-600 text-white';
+      return 'bg-indigo-700 text-white font-bold tracking-wide';
     case 'donate':
     case 'free_giveaway':
-      return 'bg-purple-600 text-white';
+      return 'bg-purple-700 text-white font-bold tracking-wide';
     case 'rent':
-      return 'bg-amber-600 text-white';
+      return 'bg-amber-700 text-white font-bold tracking-wide';
     case 'exchange':
-      return 'bg-cyan-600 text-white';
+      return 'bg-cyan-700 text-white font-bold tracking-wide';
     default:
-      return 'bg-slate-700 text-white';
+      return 'bg-slate-800 text-white font-bold tracking-wide';
   }
 }
